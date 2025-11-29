@@ -1,0 +1,6 @@
+final_project/build/
+final_project/install/
+final_project/log/
+
+.DS_Store
+**/.DS_Store
