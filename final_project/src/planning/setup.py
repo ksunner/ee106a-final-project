@@ -27,7 +27,8 @@ setup(
             'ik = planning.ik:main',
             'transform_cube_pose = planning.transform_cube_pose:main',
             'cube_pose_from_aruco = planning.cube_pose_from_aruco:main',
-            'multi_cube_pose_from_aruco = planning.multi_cube_pose_from_aruco:main'
+            'multi_cube_pose_from_aruco = planning.multi_cube_pose_from_aruco:main',
+            'chess_move = planning.chess_move:main'
         ],
     },
 
