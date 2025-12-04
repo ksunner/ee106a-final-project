@@ -111,7 +111,7 @@ class ArucoNode(rclpy.node.Node):
         self.marker_size_map = {
             1: 0.15,  2: 0.15,  3: 0.15,  4: 0.15,
             5: 0.05,
-            6: 0.15, 7: 0.15, 8: 0.04, 9: 0.15,  # ID 8 is 90mm for chess board
+            6: 0.15, 7: 0.15, 8: 0.09, 9: 0.15,  # ID 8 is 90mm for chess board
             10: 0.15, 11: 0.15,
             20: 0.05, 21: 0.05, 22: 0.05
         }

@@ -58,7 +58,7 @@ def generate_launch_description():
                 "image_topic": "/camera1/image_raw",
                 "camera_info_topic": "/camera1/camera_info",
                 "camera_frame": "camera1",
-                "marker_size": 0.04,  # 90mm = 0.09m
+                "marker_size": 0.09,  # 90mm = 0.09m
                 "aruco_dictionary_id": "DICT_5X5_250"
             }
         ]

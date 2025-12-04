@@ -28,7 +28,9 @@ setup(
             'transform_cube_pose = planning.transform_cube_pose:main',
             'cube_pose_from_aruco = planning.cube_pose_from_aruco:main',
             'multi_cube_pose_from_aruco = planning.multi_cube_pose_from_aruco:main',
-            'chess_move = planning.chess_move:main'
+            'chess_move = planning.chess_move:main',
+            'chess_board_detector = planning.chess_board_detector:main',
+            'chess_board_calibrator = planning.chess_board_calibrator:main'
         ],
     },
 

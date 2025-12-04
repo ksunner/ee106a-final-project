@@ -3,6 +3,9 @@ Chess Board Coordinate System
 Maps chess square notation (a1-h8) to offset coordinates from the ArUco marker center
 """
 
+import json
+import os
+
 
 class ChessCoords:
     """
@@ -17,24 +20,39 @@ class ChessCoords:
     - ArUco marker at board center
     """
 
-    def __init__(self, square_size=0.055):
+    def __init__(self, square_size=0.055, calibration_file='/tmp/chess_board_calibration.json'):
         """
         Initialize chess coordinate system.
 
         Args:
             square_size: Size of each chess square in meters (default 0.055m = 5.5cm)
+            calibration_file: Path to auto-calibration file from chess_board_calibrator
         """
         self.square_size = square_size
+        self.calibration_file = calibration_file
+        self.square_offsets = {}  # Auto-calibrated offsets
+        self.use_calibration = False
 
         # Files (columns) and ranks (rows)
         self.files = 'abcdefgh'
         self.ranks = '12345678'
 
-        # The ArUco marker is at the center of the board
-        # This is the intersection point of the four center squares (d4, d5, e4, e5)
-        # Center of board in file/rank coordinates is at (3.5, 3.5)
-        # where files go 0-7 (a-h) and ranks go 0-7 (1-8)
-        # Adjusted: was off by +1 rank (e3 instead of e2), so shift center up by 1
+        # Try to load auto-calibrated offsets
+        if os.path.exists(calibration_file):
+            try:
+                with open(calibration_file, 'r') as f:
+                    self.square_offsets = json.load(f)
+                self.use_calibration = True
+                print(f"✓ Loaded auto-calibration for {len(self.square_offsets)} squares from {calibration_file}")
+            except Exception as e:
+                print(f"⚠ Failed to load calibration: {e}")
+                self.use_calibration = False
+        else:
+            print(f"⚠ No calibration file found at {calibration_file}")
+            print("  Using manual coordinate mapping (may be less accurate)")
+
+        # Fallback manual calibration parameters
+        # (used if auto-calibration not available)
         self.center_file = 3.5  # Between d and e
         self.center_rank = 4.5  # Adjusted to fix +1 rank offset (between rank 5 and 6)
 
@@ -57,12 +75,20 @@ class ChessCoords:
         if file_char not in self.files or rank_char not in self.ranks:
             raise ValueError(f"Invalid square notation: {square}")
 
+        # Use auto-calibrated offsets if available
+        if self.use_calibration and square in self.square_offsets:
+            offsets = self.square_offsets[square]
+            return tuple(offsets)  # Return (dx, dy) from calibration file
+
+        # Fallback to manual calculation if no calibration
+        print(f"⚠ Using manual calculation for {square} (no calibration data)")
+
         # Get file index (0-7 for a-h)
         file_idx = self.files.index(file_char)
         # Get rank index (0-7 for 1-8)
         rank_idx = self.ranks.index(rank_char)
 
-        # Calculate offset from center
+        # Calculate offset from center (manual fallback)
         # Based on observations:
         # - e2->e4 went to d8->d6, suggesting both axes are inverted
         # Robot coordinate system (relative to ArUco marker at board center):
