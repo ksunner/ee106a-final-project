@@ -1,0 +1,30 @@
+# Ladder Checkmate Example
+# This demonstrates the classic two-rook checkmate pattern
+#
+# Initial position (simplified endgame):
+# - White: King on b4, Rooks on a4 and b4
+# - Black: King on g5
+#
+# Format: from_square-to_square (one move per line)
+# Lines starting with # are comments
+
+# Move 1: White plays Rg5 (Rook from g4 to g5)
+g4-g5
+
+# Move 1: Black plays Kg6 (King from g5 to g6)
+e5-e6
+
+# Move 2: White plays Ra6+ (Rook from a4 to a6, giving check)
+a4-a6
+
+# Move 2: Black plays Kf7 (King from g6 to f7, escaping check)
+e6-e7
+
+# Move 3: White plays Rb7+ (Rook from g5 to b7, giving check)
+g5-g7
+
+# Move 3: Black plays Ke8 (King from f7 to e8, forced to edge)
+e7-e8
+
+# Move 4: White plays Ra8# (Rook from a6 to a8, checkmate!)
+a6-a8

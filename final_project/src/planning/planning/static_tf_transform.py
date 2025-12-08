@@ -12,7 +12,7 @@ class ConstantTransformPublisher(Node):
         super().__init__('constant_tf_publisher')
         self.br = StaticTransformBroadcaster(self)
 
-        self.declare_parameter('ar_marker', 'ar_marker_9')
+        self.declare_parameter('ar_marker', 'ar_marker_10')
         marker = self.get_parameter('ar_marker').get_parameter_value().string_value
 
         # Homogeneous transform G_ar->base_link
@@ -30,7 +30,7 @@ class ConstantTransformPublisher(Node):
         # --------------------------
         # Extract rotation (3x3) and translation (3x1)
 
-        self.transform.header.frame_id = 'ar_marker_9'
+        self.transform.header.frame_id = 'ar_marker_10'
         self.transform.child_frame_id = 'base_link'
         self.transform.transform.translation.x = float(G_ar_base[0, 3])
         self.transform.transform.translation.y = float(G_ar_base[1, 3])

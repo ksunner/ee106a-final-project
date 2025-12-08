@@ -28,7 +28,13 @@ setup(
             'transform_cube_pose = planning.transform_cube_pose:main',
             'cube_pose_from_aruco = planning.cube_pose_from_aruco:main',
             'multi_cube_pose_from_aruco = planning.multi_cube_pose_from_aruco:main',
-            'chess_move = planning.chess_move:main'
+            'chess_move = planning.chess_move:main',
+            'chess_board_calibrator = planning.chess_coords_aruco:main_calibrator',
+            'chess_move_aruco = planning.chess_move_aruco:main',
+            'chess_game_replay = planning.chess_game_replay:main',
+            'chess_take = planning.chess_take:main',
+            'visualize_board = planning.visualize_board:main',
+            'check_aruco_detection = planning.check_aruco_detection:main'
         ],
     },
 

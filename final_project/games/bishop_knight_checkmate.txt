@@ -1,0 +1,89 @@
+# Bishop and Knight Checkmate
+# Source: Chess.com - https://www.chess.com/terms/bishop-knight-checkmate
+# One of the most difficult basic checkmates in chess
+#
+# Starting position (FEN): 8/8/8/8/1N6/1BK5/8/k7 w - - 0 1
+# - White: King on c3, Bishop on b3, Knight on b4
+# - Black: King on a1
+#
+# This demonstrates forcing the black king from a1 to h1 corner for checkmate
+# Format: from_square-to_square (one move per line)
+
+# Move 1: Knight almost always leads, moving in V-shape
+b4-c2  # 1. Nc2+ (Check!)
+a1-b1  # 1... Kb1 (Only move)
+
+# Move 2: Waiting move with bishop
+b3-c4  # 2. Bc4
+b1-c1  # 2... Kc1 (Forced)
+
+# Move 3: Bishop takes away b1-square
+c4-a2  # 3. Ba2
+c1-d1  # 3... Kd1 (Forced)
+
+# Move 4: Knight completes first V-shape
+c2-d4  # 4. Nd4
+d1-e1  # 4... Ke1
+
+# Move 5: King follows the knight
+c3-d3  # 5. Kd3
+e1-f2  # 5... Kf2 (Leaves first rank)
+
+# Move 6: Knight controls dark squares f4, g3, g1
+d4-e2  # 6. Ne2
+f2-f3  # 6... Kf3 (Trying to escape)
+
+# Move 7: Bishop controls light squares
+a2-e6  # 7. Be6 (Perfect coordination!)
+f3-f2  # 7... Kf2 (Must go back)
+
+# Move 8: Bishop cuts off more squares
+e6-d5  # 8. Bd5
+f2-e1  # 8... Ke1 (Tries to go back)
+
+# Move 9: King blocks escape squares
+d3-e3  # 9. Ke3
+e1-d1  # 9... Kd1 (Tries c2-square)
+
+# Move 10: Bishop blocks escape
+d5-b3  # 10. Bb3+ (Check!)
+d1-e1  # 10... Ke1 (Forced)
+
+# Move 11: Waiting move
+b3-c2  # 11. Bc2
+e1-f1  # 11... Kf1 (Forced toward h1)
+
+# Move 12: Knight leads the way
+e2-f4  # 12. Nf4
+f1-e1  # 12... Ke1
+
+# Move 13: Knight to g2
+f4-g2  # 13. Ng2+ (Check!)
+e1-f1  # 13... Kf1
+
+# Move 14: King advances
+e3-f3  # 14. Kf3
+f1-g1  # 14... Kg1 (Only move)
+
+# Move 15: King to g3
+f3-g3  # 15. Kg3
+g1-f1  # 15... Kf1 (Tries light squares)
+
+# Move 16: Bishop blocks
+c2-d3  # 16. Bd3+ (Check!)
+f1-g1  # 16... Kg1 (Forced)
+
+# Move 17: Knight prepares for mate
+g2-f4  # 17. Nf4
+g1-h1  # 17... Kh1 (Must wait)
+
+# Move 18: Waiting move with bishop
+d3-b5  # 18. Bb5
+h1-g1  # 18... Kg1 (King must return)
+
+# Move 19: Knight delivers check
+f4-h3  # 19. Nh3+ (Check!)
+g1-h1  # 19... Kh1 (Forced)
+
+# Move 20: Checkmate!
+b5-c6  # 20. Bc6# (Checkmate!)
