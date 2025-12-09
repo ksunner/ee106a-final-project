@@ -1,0 +1,38 @@
+# Italian Game (Giuoco Piano) Opening
+# Classical opening focusing on piece development
+# No captures, no king/queen moves
+
+# 1. e4 e5
+e2-e4
+e7-e5
+
+# 2. Nf3 Nc6
+g1-f3
+b8-c6
+
+# 3. Bc4 Bc5
+f1-c4
+f8-c5
+
+# 4. c3 Nf6
+c2-c3
+g8-f6
+
+# 5. d4 exd4 (wait, this involves a capture)
+# Let's continue without captures:
+
+# 4. Nc3 Nf6
+b1-c3
+g8-f6
+
+# 5. d3 d6
+d2-d3
+d7-d6
+
+# 6. Bg5 Be6
+c1-g5
+c8-e6
+
+# 7. Nd5 Nd4
+c3-d5
+f6-d4

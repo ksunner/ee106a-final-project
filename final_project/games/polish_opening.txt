@@ -1,0 +1,35 @@
+# Polish Opening (Orangutan Opening)
+# An unconventional hypermodern opening starting with 1. b4
+# Named after a game played at a zoo where Tartakower was inspired by an orangutan
+
+# 1. b4 e5
+b2-b4
+e7-e5
+
+# 2. Bb2 d6
+c1-b2
+d7-d6
+
+# 3. d4 e4
+d2-d4
+e5-e4
+
+# 4. e3 d5
+e2-e3
+d6-d5
+
+# 5. a3 Nf6
+a2-a3
+g8-f6
+
+# 6. c4 c6
+c2-c4
+c7-c6
+
+# 7. Nc3 a6
+b1-c3
+a7-a6
+
+# 8. b5 Be7
+b4-b5
+f8-e7

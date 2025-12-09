@@ -110,7 +110,7 @@ class ChessBoardCalibrator(Node):
                     base_frame,
                     ar_frame,
                     rclpy.time.Time(),
-                    timeout=rclpy.duration.Duration(seconds=0.05)
+                    timeout=rclpy.duration.Duration(seconds=1.0)
                 )
 
                 # Store position
@@ -121,12 +121,46 @@ class ChessBoardCalibrator(Node):
                 ])
                 self.marker_positions[square] = pos
 
-            except Exception:
-                # Marker not visible
+                # Log when we successfully detect a marker (only once)
+                if not hasattr(self, f'_logged_{square}'):
+                    self.get_logger().info(f"Detected marker {marker_id} at {square}: ({pos[0]:.3f}, {pos[1]:.3f}, {pos[2]:.3f})")
+                    setattr(self, f'_logged_{square}', True)
+
+            except Exception as e:
+                # Log the actual error for debugging
+                if not hasattr(self, f'_error_logged_{square}'):
+                    self.get_logger().warn(f"Cannot find transform for {ar_frame}: {str(e)}")
+                    setattr(self, f'_error_logged_{square}', True)
                 continue
 
     def calibrate_callback(self, request, response):
         """Service callback to perform calibration."""
+        self.get_logger().info("Calibration service called - looking for markers...")
+
+        # Force fresh marker lookup even if previously calibrated
+        self.calibrated = False
+        self.marker_positions.clear()
+
+        # Clear logging flags to allow fresh detection messages
+        for square in self.marker_ids.keys():
+            if hasattr(self, f'_logged_{square}'):
+                delattr(self, f'_logged_{square}')
+            if hasattr(self, f'_error_logged_{square}'):
+                delattr(self, f'_error_logged_{square}')
+
+        # Directly call lookup_markers multiple times to detect markers
+        # Don't rely on the timer callback
+        import time
+        max_attempts = 10
+        attempt = 0
+
+        while attempt < max_attempts and len(self.marker_positions) < 4:
+            self.lookup_markers()  # Directly call lookup
+            attempt += 1
+            if len(self.marker_positions) < 4:
+                time.sleep(0.2)  # Brief pause between attempts
+                self.get_logger().info(f"Searching for markers... ({len(self.marker_positions)}/4 detected, attempt {attempt}/{max_attempts})")
+
         # Check if all 4 markers are detected
         if len(self.marker_positions) < 4:
             detected = list(self.marker_positions.keys())

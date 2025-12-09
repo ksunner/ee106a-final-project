@@ -1,0 +1,19 @@
+# Spanish Game (Ruy Lopez)
+# One of the oldest and most classical chess openings
+# Named after 16th-century Spanish priest Ruy López de Segura
+
+# 1. e4 e5
+e2-e4
+e7-e5
+
+# 2. Nf3 Nc6
+g1-f3
+b8-c6
+
+# 3. Bb5 Nf6
+f1-b5
+g8-f6
+
+# 4. d3 Bc5
+d2-d3
+f8-c5
